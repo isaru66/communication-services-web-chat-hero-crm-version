@@ -14,6 +14,11 @@ import userConfig from './routes/userConfig';
 import createThread from './routes/createThread';
 import addUser from './routes/addUser';
 import uploadToAzureBlobStorage from './routes/uploadToAzureBlobStorage';
+import registerWorker from './routes/registerWorker';
+import getJobAssignment from './routes/getJobAssignment';
+import deregisterWorker from './routes/deregisterWorker';
+import acceptJobOffer from './routes/acceptJobOffer';
+import getJobDetail from './routes/getJobDetail';
 
 const app = express();
 
@@ -63,6 +68,13 @@ app.use('/userConfig', cors(), userConfig);
  * purpose: Get tokens and endpoints for uploading logs to Azure Blob Storage
  */
 app.use('/uploadToAzureBlobStorage', cors(), uploadToAzureBlobStorage);
+
+app.use('/registerWorker', cors(), registerWorker);
+app.use('/deregisterWorker', cors(), deregisterWorker);
+app.use('/getJobAssignment', cors(), getJobAssignment);
+app.use('/getJobDetail', cors(), getJobDetail);
+app.use('/acceptJobOffer', cors(), acceptJobOffer);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

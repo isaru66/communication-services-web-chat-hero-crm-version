@@ -53,39 +53,55 @@ const webpackConfig = (sampleAppDir, env, babelConfig) => {
       })
     ],
     devServer: {
-      port: 3000,
+      port: 3002,
       hot: true,
       open: true,
       static: { directory: path.resolve(sampleAppDir, 'public') },
       proxy: [
         {
           path: '/token',
-          target: 'http://[::1]:8080'
+          target: 'http://[::1]:8082'
         },
         {
           path: '/refreshToken/*',
-          target: 'http://[::1]:8080'
+          target: 'http://[::1]:8082'
         },
         {
           path: '/isValidThread/*',
-          target: 'http://[::1]:8080'
+          target: 'http://[::1]:8082'
         },
         {
           path: '/createThread',
-          target: 'http://[::1]:8080'
+          target: 'http://[::1]:8082'
         },
         {
           path: '/userConfig/*',
-          target: 'http://[::1]:8080'
+          target: 'http://[::1]:8082'
         },
         {
           path: '/getEndpointUrl',
-          target: 'http://[::1]:8080'
+          target: 'http://[::1]:8082'
         },
         {
           path: '/addUser/*',
-          target: 'http://[::1]:8080'
-        }
+          target: 'http://[::1]:8082'
+        },
+        {
+          path: '/registerWorker/*',
+          target: 'http://[::1]:8082'
+        },
+        {
+          path: '/getJobAssignment/*',
+          target: 'http://[::1]:8082'
+        },
+        {
+          path: '/getJobDetail/*',
+          target: 'http://[::1]:8082'
+        },
+        {
+          path: '/acceptJobOffer',
+          target: 'http://[::1]:8082'
+        },
       ]
     }
   };

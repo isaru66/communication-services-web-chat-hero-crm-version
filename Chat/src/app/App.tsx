@@ -8,10 +8,11 @@ import { ChatScreen } from './ChatScreen';
 import ConfigurationScreen from './ConfigurationScreen';
 import { EndScreen } from './EndScreen';
 import { ErrorScreen } from './ErrorScreen';
-import HomeScreen from './HomeScreen';
 import { getExistingThreadIdFromURL } from './utils/getParametersFromURL';
 import { getBuildTime, getChatSDKVersion, getCommitID, getCommnicationReactSDKVersion } from './utils/utils';
 import { initializeFileTypeIcons } from '@fluentui/react-file-type-icons';
+import CRMLoginScreen from './CRMLoginScreen';
+import WaitScreen from './WaitScreen';
 
 setLogLevel('error');
 
@@ -30,6 +31,7 @@ export default (): JSX.Element => {
   const [page, setPage] = useState('home');
   const [token, setToken] = useState('');
   const [userId, setUserId] = useState('');
+  const [workerId, setWorkerId] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [threadId, setThreadId] = useState('');
   const [endpointUrl, setEndpointUrl] = useState('');
@@ -38,7 +40,17 @@ export default (): JSX.Element => {
     switch (page) {
       case 'home': {
         document.title = `home - ${webAppTitle}`;
-        return <HomeScreen />;
+        return <CRMLoginScreen
+          joinChatHandler={() => {
+            setPage('wait');
+          }}
+          setToken={setToken}
+          setUserId={setUserId}
+          setDisplayName={setDisplayName}
+          setEndpointUrl={setEndpointUrl}
+          setThreadId={setThreadId}
+          setWorkerId={setWorkerId}
+        />;
       }
       case 'configuration': {
         document.title = `configuration - ${webAppTitle}`;
@@ -53,6 +65,19 @@ export default (): JSX.Element => {
             setThreadId={setThreadId}
             setEndpointUrl={setEndpointUrl}
           />
+        );
+      }
+      case 'wait' : {
+        document.title = `wait for job - ${webAppTitle}`;
+        return (
+          <WaitScreen 
+            workerId={workerId}
+            displayName={displayName}
+            setThreadId={setThreadId}
+            acceptJobHandler={() => {
+              setPage('chat');
+            }}
+           />
         );
       }
       case 'chat': {
