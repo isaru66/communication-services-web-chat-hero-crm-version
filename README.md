@@ -17,6 +17,12 @@ products:
 
 This is a modified version of [Azure Communication Services WebChat Hero](hhttps://github.com/Azure-Samples/communication-services-web-chat-hero). Which add Azure Commnunication Service Job Router to select which Human Agent to assist with customer question.
 
+### Related Microservices
+
+1. **Customer Support Chat Channel**: Deploy the [Azure Communication Services Web Chat Hero](https://github.com/Azure-Samples/communication-services-web-chat-hero) for customer to chat with chatbot and human agent. You can use this official sample code without modification.
+2. **Webhook Chatbot**: Deploy the [ACS Chatbot Webhook with Job Router](https://github.com/isaru66/acs-chatbot-webhook-with-jobrouter) for chatbot interactions and seamless handoff to human agents.
+3. **CRM Login Channel for Human Agents**: This repository provides a modified version of the ACS Web Chat Hero, tailored for human agents to accept handoffs job from the "Webhook Chatbot."
+
 ## Prerequisites
 
 - [Visual Studio Code (Stable Build)](https://code.visualstudio.com/download)
